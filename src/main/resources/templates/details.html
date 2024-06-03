@@ -8,8 +8,9 @@
 <body>
     <h1 th:text="${title}"></h1>
     <ul>
-        <li th:text="${name}"></li>
-        <li th:text="${lastname}"></li>
+        <li th:text="${user.name}"></li> 
+        <!--SI QUEREMOS QUE MUESTRE LOS NOMBRES USANDO UN OBJETO, USAMOS OBEJETO.VALOR (user.name)-->
+        <li th:text="${user.lastname}"></li>
     </ul>
 </body>
 </html>

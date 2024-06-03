@@ -3,7 +3,10 @@ package com.curso.jesus.springboot.springboot_web.controllers;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.curso.jesus.springboot.springboot_web.models.User;
 
 @Controller
 public class UserController {
@@ -11,7 +14,13 @@ public class UserController {
 
     // Un metodo handle maneja una peticion de Request
     @GetMapping("/details")
+    public String details(Model model){
 
+        User user = new User("Jesus", "Ortiz");
+        model.addAttribute("title", "Bienvenido Usuario");
+        model.addAttribute("user", user);
+        return "details";
+    }
     /*  ESTO ES USANDO MODEL
 
     public String details(Model model){ //Para usar Model lo "inyectamos" en el String con el metodo MODEL
@@ -21,7 +30,7 @@ public class UserController {
         model.addAttribute("name", "Jesus");
         model.addAttribute("lastname", "Ortiz");
         return "details"; 
-    } */
+    } 
      
     //ESTO ES USANDO MAP
 
@@ -33,4 +42,6 @@ public class UserController {
         model.put("lastname", "Ortiz");
         return "details"; 
     }
+
+    */
 }
