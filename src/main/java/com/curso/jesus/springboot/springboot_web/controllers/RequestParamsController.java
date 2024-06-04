@@ -22,6 +22,17 @@ public class RequestParamsController {
 
         return param;
     }
+
+    @GetMapping("/bar")
+    public ParamDto bar(@RequestParam String text, @RequestParam Integer code){
+        
+        ParamDto params = new ParamDto();
+        params.setMessage(text);
+        params.setCode(code);
+        
+        return params;
+    }
+    
     /*Explicacion de este @RestController -> Basicamente lo que hago es que "foo" tenga un
      * Request param obligatorio que va a ser de tipo String en donde ese "message" va a ser 
      * el que se use para hacer el param.setMessage() -> es decir, el parametro de entrada
