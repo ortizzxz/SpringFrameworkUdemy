@@ -46,7 +46,7 @@ public class UserRestController {
         User user3 = new User("Daniel", "Mendoza");
 
         //Creamos la arraylist
-        List<User> users = new ArrayList(); // Para abreviar todo esto se puede usar el metodo
+        List<User> users = new ArrayList<>(); // Para abreviar todo esto se puede usar el metodo
                                             //List<User> users = new Arrays.asList(user1, user2, user3);
         // Agregamos al arraylist
         users.add(user1);
