@@ -11,6 +11,12 @@
         <li th:text="${user.name}"></li> 
         <!--SI QUEREMOS QUE MUESTRE LOS NOMBRES USANDO UN OBJETO, USAMOS OBEJETO.VALOR (user.name)-->
         <li th:text="${user.lastname}"></li>
+
+        <!--IF USER EXISTS THEN MUESTRALO-->
+        <li th:if="${user.email}" th:text="${user.email}"></li>
+
+        <!--else-->
+        <li th:if="${user.email == null}" th:text="${'no tiene email'}"></li>
     </ul>
 </body>
 </html>
