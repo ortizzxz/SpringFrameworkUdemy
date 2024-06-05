@@ -18,5 +18,6 @@
         <!--else-->
         <li th:if="${user.email == null}" th:text="${'no tiene email'}"></li>
     </ul>
+    <a th:href="@{/list}">listado</a>
 </body>
 </html>

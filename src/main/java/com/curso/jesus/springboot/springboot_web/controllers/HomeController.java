@@ -8,9 +8,9 @@ public class HomeController {
 
     @GetMapping({"","/","/home"})
     public String home(){
-
-
-        return "redirect:/details";
+        
+        return "forward:/details";
     }
 
 }
+    
