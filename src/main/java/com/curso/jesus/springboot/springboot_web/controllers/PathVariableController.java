@@ -8,6 +8,7 @@ import com.curso.jesus.springboot.springboot_web.models.dto.ParamDto;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +34,7 @@ public class PathVariableController {
     private String message;
 
     @Value("${config.listOfValues}")
-    private String[] listOfValues;
+    private List<String> listOfValues;
 
     @GetMapping("/values")
     public Map<String,Object> values(){
