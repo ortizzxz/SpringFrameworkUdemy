@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySources;
 
 @Configuration
 @PropertySources({
-        @PropertySource("classpath:values.properties") //esto es para importar las configuraciones de mi values.property
+        @PropertySource(value="classpath:values.properties", encoding="UTF-8") //esto es para importar las configuraciones de mi values.property
     })
 public class ValuesConfiguration {
 
