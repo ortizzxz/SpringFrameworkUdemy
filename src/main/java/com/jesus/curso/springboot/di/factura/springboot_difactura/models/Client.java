@@ -9,7 +9,7 @@ public class Client {
     @Value("${client.name}")
     private String name;
     
-    @Value("$client.lastname")
+    @Value("${client.lastname}")
     private String lastname;
 
     public String getName() {

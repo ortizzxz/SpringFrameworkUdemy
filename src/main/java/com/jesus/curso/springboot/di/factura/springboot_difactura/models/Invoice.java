@@ -14,10 +14,9 @@ public class Invoice {
     
     @Value("${invoice.description}")
     private String description;
-    
-    private List<Item> items;
 
-    
+    @Autowired
+    private List<Item> items;
 
     public Client getClient() {
         return client;
