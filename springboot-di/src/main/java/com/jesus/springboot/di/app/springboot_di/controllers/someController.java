@@ -15,12 +15,7 @@ import com.jesus.springboot.di.app.springboot_di.services.ProductService;
 @RequestMapping("/api")
 public class someController {
 
-    private final ProductService service;
-
-    @Autowired
-    public someController(ProductService service) {
-        this.service = service;
-    }
+    private ProductService service = new ProductService();
 
     @GetMapping
     public List<Product> list() {
