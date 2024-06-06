@@ -19,3 +19,10 @@ public class InvoiceController {
         return invoice;
     }
 }
+
+/*
+ * Nota:
+ * Es muy importante manejar el Scope de la sesion, y si es singleton o no -> 
+ *  Esto quiere decir a que si la sesion es por ejemplo un carro de compra es 1 producto menos que hay en stock y afecta a todos los usuarios
+ * Cada usuario tiene su propio carro de compra y no tiene que haber problemas entre carro de compras
+ */

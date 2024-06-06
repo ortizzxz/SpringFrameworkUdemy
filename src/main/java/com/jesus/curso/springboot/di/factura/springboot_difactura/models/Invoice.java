@@ -6,10 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 @Component
+@RequestScope
+//@SessionScope
+@JsonIgnoreProperties({"targetSource","advisors"})
 public class Invoice {
 
     @Autowired
@@ -29,6 +36,13 @@ public class Invoice {
     @PostConstruct // se ejecuta al crear el componente en el contexto del singleton
     public void init(){
         System.out.println("Creando el componente de la factura");
+        client.setName(client.getName().concat(" Jesús"));
+        description = description.concat(" del cliente: ").concat(client.getName().concat(" ").concat(client.getLastname()));
+    }
+
+    @PreDestroy // se ejecuta justo antes de destruir el componente 
+    public void destroy(){
+        System.out.println("Destruyendo el componente << Invoice >>");
     }
 
     public Client getClient() {
