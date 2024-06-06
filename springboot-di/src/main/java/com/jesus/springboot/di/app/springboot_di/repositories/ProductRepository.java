@@ -7,7 +7,7 @@ import com.jesus.springboot.di.app.springboot_di.models.Product;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements IProductRepository {
 
     private List<Product> data;
 

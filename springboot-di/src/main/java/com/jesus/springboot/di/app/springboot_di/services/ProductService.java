@@ -8,19 +8,11 @@ import com.jesus.springboot.di.app.springboot_di.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService {
+public class ProductService implements IProductService {
 
-    private final ProductRepository repository;
+    private ProductRepository repository = new ProductRepository();
 
-
-    public ProductService(ProductRepository repository) {
-        this.repository = repository;
-    }
-
-    public ProductService() {
-        this.repository = new ProductRepository();
-    }
-
+    @Override
     public List<Product> findAll() {
         return repository.findAll().stream().map(p -> {
             Double precioImpuesto = p.getPrice() * 1.25;
@@ -31,7 +23,9 @@ public class ProductService {
         }).collect(Collectors.toList());
     }
 
+    @Override
     public Product findById(Long id) {
         return repository.findById(id);
     }
+    
 }
