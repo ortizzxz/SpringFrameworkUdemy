@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
 import com.jesus.curso.springboot.di.factura.springboot_difactura.models.Item;
@@ -30,6 +29,7 @@ public class AppConfig {
     }
     
     @Bean("default")
+    //@Primary
     List<Item> itemsInvoiceOficina(){
         
         Product p1 = new Product("Impresora HP", 630);
