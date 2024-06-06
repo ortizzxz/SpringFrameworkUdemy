@@ -15,9 +15,10 @@ public class ProductRepositoryJSON implements IProductRepository{
     private List<Product> list;
 
     public ProductRepositoryJSON(){
+        
         Resource resource = new ClassPathResource("json/product.json");
         ObjectMapper objectMapper = new ObjectMapper();
-        
+
         try {
             
             list = Arrays.asList(objectMapper.readValue(resource.getFile(), Product[].class));
@@ -34,7 +35,9 @@ public class ProductRepositoryJSON implements IProductRepository{
 
     @Override
     public Product findById(Long id) {
-        return null;
+        return list.stream().filter(p -> {
+            return p.getId().equals(id);
+        }).findFirst().orElseThrow();
     }
 
 }

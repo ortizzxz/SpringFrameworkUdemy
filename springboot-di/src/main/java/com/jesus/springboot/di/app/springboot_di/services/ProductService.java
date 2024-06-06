@@ -7,6 +7,7 @@ import com.jesus.springboot.di.app.springboot_di.models.Product;
 import com.jesus.springboot.di.app.springboot_di.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,9 @@ public class ProductService implements IProductService {
     @Autowired 
     private ProductRepository repository;
 
+    public ProductService(@Qualifier("ProductRepositoryJSON") ProductRepository repository){
+        this.repository = repository;
+    }
     
     @Override
     public List<Product> findAll() {

@@ -5,9 +5,12 @@ import java.util.List;
 
 import com.jesus.springboot.di.app.springboot_di.models.Product;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-@Repository
+
+@Primary
+@Repository("productList")
 // @RequestScope -> El ciclo de vida de este repositorio solo existe durante una peticion -> 
             //  luego se repite el cliclo crear / instanciar / destruir. Es decir, cuando refrescamos el navegador o hacemos una nueva peticion
             
