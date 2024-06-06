@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 // @RequestScope -> El ciclo de vida de este repositorio solo existe durante una peticion -> 
             //  luego se repite el cliclo crear / instanciar / destruir. Es decir, cuando refrescamos el navegador o hacemos una nueva peticion
-// @SessionScope -> El ciclo de vida de este repositorio existe hasta que se acabe la sesion (hasta que se cierre la pestaña)
+            
+// @SessionScope -> El ciclo de vida de este repositorio existe hasta que se acabe la sesion (hasta que se cierre el navegador) 
+                    // -> Por ejemplo un carro de compra o un inicio de sesion nos interesa que sea SessionScope
 public class ProductRepository implements IProductRepository {
 
     private List<Product> data;

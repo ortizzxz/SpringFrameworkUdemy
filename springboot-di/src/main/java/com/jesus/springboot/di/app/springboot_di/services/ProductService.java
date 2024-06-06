@@ -7,18 +7,23 @@ import com.jesus.springboot.di.app.springboot_di.models.Product;
 import com.jesus.springboot.di.app.springboot_di.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProductService implements IProductService {
 
     @Autowired
+    private Environment environment;
+
+    @Autowired 
     private ProductRepository repository;
 
+    
     @Override
     public List<Product> findAll() {
         return repository.findAll().stream().map(p -> {
-            Double precioImpuesto = p.getPrice() * 1.25;
+            Double precioImpuesto = p.getPrice() * environment.getProperty("config.price.tax", Double.class);
             //instancia
             Product newProduct = (Product) p.clone();
             newProduct.setPrice(precioImpuesto.longValue());
