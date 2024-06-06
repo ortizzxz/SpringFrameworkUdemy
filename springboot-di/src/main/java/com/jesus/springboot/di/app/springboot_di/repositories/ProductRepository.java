@@ -6,10 +6,11 @@ import java.util.List;
 import com.jesus.springboot.di.app.springboot_di.models.Product;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.web.context.annotation.RequestScope;
 
 @Repository
-@RequestScope // El ciclo de vida de este repositorio solo existe durante una peticion -> luego se repite el cliclo crear / instanciar / destruir
+// @RequestScope -> El ciclo de vida de este repositorio solo existe durante una peticion -> 
+            //  luego se repite el cliclo crear / instanciar / destruir. Es decir, cuando refrescamos el navegador o hacemos una nueva peticion
+// @SessionScope -> El ciclo de vida de este repositorio existe hasta que se acabe la sesion (hasta que se cierre la pestaña)
 public class ProductRepository implements IProductRepository {
 
     private List<Product> data;
