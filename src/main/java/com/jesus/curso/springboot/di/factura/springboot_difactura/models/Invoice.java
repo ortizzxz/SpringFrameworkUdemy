@@ -10,9 +10,6 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-
 @Component
 @RequestScope
 //@SessionScope
@@ -29,6 +26,7 @@ public class Invoice {
     @Qualifier("default")
     private List<Item> items;
 
+    /*
     public Invoice(){
         System.out.println("Creando el componente de la factura");
     }
@@ -44,6 +42,7 @@ public class Invoice {
     public void destroy(){
         System.out.println("Destruyendo el componente << Invoice >>");
     }
+     */
 
     public Client getClient() {
         return client;

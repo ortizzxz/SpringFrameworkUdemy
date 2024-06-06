@@ -7,7 +7,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Component
-@RequestScope //
+@RequestScope // ApplicationScope -> Singleton 
 @JsonIgnoreProperties({"targetSource","advisors"})
 public class Client {
 
