@@ -5,12 +5,15 @@ import java.util.stream.Collectors;
 
 import com.jesus.springboot.di.app.springboot_di.models.Product;
 import com.jesus.springboot.di.app.springboot_di.repositories.ProductRepository;
-import org.springframework.stereotype.Service;
 
-@Service
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class ProductService implements IProductService {
 
-    private ProductRepository repository = new ProductRepository();
+    @Autowired
+    private ProductRepository repository;
 
     @Override
     public List<Product> findAll() {
@@ -27,5 +30,5 @@ public class ProductService implements IProductService {
     public Product findById(Long id) {
         return repository.findById(id);
     }
-    
+
 }
