@@ -25,7 +25,8 @@ public class ProductService {
         return repository.findAll().stream().map(p -> {
             Double precioImpuesto = p.getPrice() * 1.25;
             //instancia
-            Product newProduct = new Product(p.getId(), p.getName(),precioImpuesto.longValue());
+            Product newProduct = (Product) p.clone();
+            newProduct.setPrice(precioImpuesto.longValue());
             return newProduct;
         }).collect(Collectors.toList());
     }
