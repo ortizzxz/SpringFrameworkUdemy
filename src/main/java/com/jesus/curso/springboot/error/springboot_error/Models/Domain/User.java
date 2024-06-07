@@ -42,8 +42,4 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
-
-    public String getRoleName(){
-        return role.getName();
-    }
 }
