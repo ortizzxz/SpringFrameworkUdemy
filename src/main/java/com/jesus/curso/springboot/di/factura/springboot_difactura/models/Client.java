@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Component
 @RequestScope // ApplicationScope -> Singleton 
-@JsonIgnoreProperties({"targetSource","advisors"})
+// @JsonIgnoreProperties({"targetSource","advisors"})
 public class Client {
 
     @Value("${client.name}")
