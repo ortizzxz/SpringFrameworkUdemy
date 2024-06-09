@@ -57,6 +57,12 @@ public class Person {
     public void setProgrammingLanguage(String programmingLanguage) {
         this.programmingLanguage = programmingLanguage;
     }
+
+    @Override
+    public String toString() {
+        return "Person [id=" + id + ", name=" + name + ", lastname=" + lastname + ", programmingLanguage="
+                + programmingLanguage + "]";
+    }
     
     
 }
