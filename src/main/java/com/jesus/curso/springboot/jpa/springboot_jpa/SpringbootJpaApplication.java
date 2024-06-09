@@ -56,6 +56,8 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 		String name = repository.getNameById(id);
 		System.out.println(name);
+
+		sc.close();
 	} 
 
 	@Transactional(readOnly=true) // -> solo consulta
