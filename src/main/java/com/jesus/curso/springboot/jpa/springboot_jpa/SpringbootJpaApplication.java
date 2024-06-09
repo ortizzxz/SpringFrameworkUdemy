@@ -1,11 +1,14 @@
 package com.jesus.curso.springboot.jpa.springboot_jpa;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jesus.curso.springboot.jpa.springboot_jpa.entities.Person;
 import com.jesus.curso.springboot.jpa.springboot_jpa.repositories.PersonRepository;
@@ -22,9 +25,10 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		findOneLike();
+		update();
 	}
 
+	@Transactional(readOnly=true) // -> solo consulta
 	public void findOne(){
 		// Person person = null;
 		// Optional<Person> optionalPerson = repository.findById(1L);
@@ -61,4 +65,47 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		});
 	}
 
+	@Transactional
+	public void create(){
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Name:");
+		String name = sc.next();
+
+		System.out.println("Lastname: ");
+		String apellido = sc.next();
+
+		System.out.println("Programming Lang:");
+		String pl = sc.next();
+		sc.close();
+		
+		Person person = new Person(null, name, apellido, pl);
+		Person personNew = repository.save(person);
+
+		System.out.println(personNew);
+		
+		repository.findById(personNew.getId()).ifPresent(p -> System.out.println(p) );
+	}
+
+	@Transactional
+	public void update(){
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ID: ");
+		Long id = sc.nextLong();
+
+		Optional<Person> optionalPerson = repository.findById(id);
+
+		optionalPerson.ifPresent(p -> {
+			System.out.println("Ingrese el lenguage de Programación: ");
+			System.out.println(p);
+			String prog = sc.next();
+			p.setProgrammingLanguage(prog);
+			Person personDB = repository.save(p);
+			System.out.println(personDB);
+		});
+
+		sc.close();
+	}
+	
 }
