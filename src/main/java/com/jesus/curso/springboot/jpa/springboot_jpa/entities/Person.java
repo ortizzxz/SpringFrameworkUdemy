@@ -33,6 +33,11 @@ public class Person {
         this.programmingLanguage = programmingLanguage;
     }
 
+    public Person(String name, String lastname) {
+        this.name = name;
+        this.lastname = lastname;
+    }
+
     public Long getId() {
         return id;
     }

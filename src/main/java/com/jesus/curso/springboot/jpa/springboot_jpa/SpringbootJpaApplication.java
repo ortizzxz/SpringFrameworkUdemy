@@ -25,8 +25,38 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		update();
+		personalizedQuery2	();
 	}
+
+	@Transactional(readOnly=true)
+	public void personalizedQuery2(){
+		
+		List<Object[]> personRegs = repository.findAllMixPersonDataList();
+		
+		personRegs.forEach(reg -> {
+			System.out.println("programmingLanguage= " + reg[1] + ", person: " + reg[0]);
+		});
+
+		System.out.println("Segunda consulta.");
+
+		List<Person> person = repository.findAllClassPerson();
+
+		person.forEach(p -> {
+			System.out.println(p);
+		});
+	}
+
+	@Transactional(readOnly=true)
+	public void personalizedQuery(){
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Ingrese id: ");
+		Long id = sc.nextLong();
+
+		String name = repository.getNameById(id);
+		System.out.println(name);
+	} 
 
 	@Transactional(readOnly=true) // -> solo consulta
 	public void findOne(){
