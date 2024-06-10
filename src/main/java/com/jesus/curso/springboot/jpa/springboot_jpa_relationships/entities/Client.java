@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -22,9 +23,15 @@ public class Client {
 
     private String name;
     private String lastname;
-
+    
+    /*
+    * @JoinTable(name = "tbl__clientes_todirecciones", 
+    * JoinColumn= @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_direcciones"),
+    * uniqueConstraints = @UniqueConstraints(columNames = {"id_dirreciones"}) )
+    * Con esto crea una tabla relacional a mi medida    
+    */
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id") // -> con esto creamos una columna client_id en la tabla para no crear una tabla nueva de relacion
     private List<Address> addresses = new ArrayList<>();
 
     public Client(){}
