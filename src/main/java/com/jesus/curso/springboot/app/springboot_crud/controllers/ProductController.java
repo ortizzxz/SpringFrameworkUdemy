@@ -1,6 +1,8 @@
 package com.jesus.curso.springboot.app.springboot_crud.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// import com.jesus.curso.springboot.app.springboot_crud.ProductValidation; 
 import com.jesus.curso.springboot.app.springboot_crud.entities.Product;
 import com.jesus.curso.springboot.app.springboot_crud.services.ProductService;
 
@@ -29,6 +32,9 @@ public class ProductController {
 
     @Autowired
     private ProductService service;
+
+    // @Autowired
+    // private ProductValidation productValidation;
 
     @GetMapping
     public List<Product> list(){
@@ -51,6 +57,8 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Product product, BindingResult result){
 
+        // productValidation.validate(product, result);
+
         if(result.hasFieldErrors()){
             return validation(result);
         }
@@ -61,12 +69,14 @@ public class ProductController {
     }    
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@Valid @RequestBody Product product, BindingResult result, @PathVariable Long id){
+    public ResponseEntity<?> update(@Valid @RequestBody Product product, BindingResult result, @PathVariable Long id){
+
+        // productValidation.validate(product, result);
 
         if(result.hasFieldErrors()){
             return validation(result);
         }
-        
+
         Optional<Product> productOptional  = service.update(id, product);
         
         if(productOptional.isPresent()){
@@ -91,5 +101,13 @@ public class ProductController {
     }
 
     private ResponseEntity<?> validation(BindingResult result) {
+        
+        Map<String,String> errors = new HashMap<>();
+
+        result.getFieldErrors().forEach(e -> {
+            errors.put(e.getField(), e.getDefaultMessage());
+        });
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 }

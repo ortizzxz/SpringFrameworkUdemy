@@ -1,5 +1,7 @@
 package com.jesus.curso.springboot.app.springboot_crud.entities;
 
+import com.jesus.curso.springboot.app.springboot_crud.validation.isRequired;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +28,7 @@ public class Product {
     @NotNull
     private Integer price;
     
-    @NotEmpty
+    @isRequired
     private String description;
 
     //
