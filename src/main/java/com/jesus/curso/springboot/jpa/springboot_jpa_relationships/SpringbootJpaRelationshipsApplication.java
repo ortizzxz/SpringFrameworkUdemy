@@ -61,6 +61,7 @@ public class SpringbootJpaRelationshipsApplication implements CommandLineRunner{
 		clientRepository.save(client);
 	}
 	
+	
 	public void manyToOneFindByIdClient(){
 		
 		Optional<Client> optionalClient = clientRepository.findById(1L);
@@ -76,6 +77,29 @@ public class SpringbootJpaRelationshipsApplication implements CommandLineRunner{
 			System.out.println(invoiceDB);
 		}
 
+	}
+
+	@Transactional
+	public void deleteAddress(){
+
+		Client client = new Client("Miguelito", "Yankee");
+
+		Address ad1 = new Address("Zulia", 20);
+		Address ad2 = new Address("Vargas", 1);
+
+		client.getAddresses().add(ad1);
+		client.getAddresses().add(ad2);
+
+		clientRepository.save(client);
+		System.out.println(client);
+		
+		Optional<Client> optClient = clientRepository.findById(3L);
+
+		optClient.ifPresent(c -> {
+			c.getAddresses().remove(ad1);
+			clientRepository.save(c);
+			System.out.println(c);
+		});
 	}
 
 }
