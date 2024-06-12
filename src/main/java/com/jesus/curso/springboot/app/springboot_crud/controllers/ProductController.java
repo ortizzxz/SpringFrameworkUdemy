@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jesus.curso.springboot.app.springboot_crud.entities.Product;
 import com.jesus.curso.springboot.app.springboot_crud.services.ProductService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,7 +48,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> create(@RequestBody Product product){
+    public ResponseEntity<Product> create(@Valid @RequestBody Product product){
 
         Product productNew = service.save(product);
 
@@ -53,19 +56,22 @@ public class ProductController {
     }    
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product){
+    public ResponseEntity<Product> update(@PathVariable Long id, @Valid @RequestBody Product product){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(product));
+        Optional<Product> productOptional  = service.update(id, product);
+        
+        if(productOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.CREATED).body(productOptional.orElseThrow());
+        }else{
+            return ResponseEntity.notFound().build(); // -> 404
+        }
     }
 
 
     @DeleteMapping("/{id}") // -> ESTO ES UN PATH VARIABLE, ES DECIR QUE CAMBIA Y PARA ANOTAR QUE LO QUE BUSCO /ID ES LO QUE QUIERO INYECTAR EN ID
     public ResponseEntity<?> delete(@PathVariable Long id){ // HAGO UN @PATHVARIABLE
-        
-        Product product = new Product();
-        product.setId(id);
 
-        Optional<Product> productOptional = service.delete(product);
+        Optional<Product> productOptional = service.delete(id);
         
         if(productOptional.isPresent()){
             return ResponseEntity.ok(productOptional.orElseThrow()); // -> si exsite ese producto lo devolvemos ELSE

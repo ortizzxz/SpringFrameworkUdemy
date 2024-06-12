@@ -5,9 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="products")
+@Table(name="product")
 public class Product {
     
     /*
@@ -17,9 +19,14 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @NotEmpty
     private String name;
+    
+    @NotNull
     private Integer price;
+    
+    @NotEmpty
     private String description;
 
     //
