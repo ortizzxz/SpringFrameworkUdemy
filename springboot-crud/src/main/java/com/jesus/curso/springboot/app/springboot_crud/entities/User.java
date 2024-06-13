@@ -14,6 +14,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
@@ -24,9 +26,14 @@ public class User {
     private Long id;
 
     @Column(unique = true)
+    @NotBlank
+    @Size(max = 18)
     private String username;
 
+    @NotBlank
     private String password;
+
+    private boolean enabled;
 
     @ManyToAny
     @JoinTable(
@@ -78,6 +85,14 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     
