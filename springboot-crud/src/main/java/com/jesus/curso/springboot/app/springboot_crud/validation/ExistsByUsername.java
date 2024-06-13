@@ -5,8 +5,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import jakarta.validation.Payload;
+
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExistsByUsername {
+    String message() default "Ya existe este username";
 
+	Class<?>[] groups() default { };
+
+	Class<? extends Payload>[] payload() default { };
 }
