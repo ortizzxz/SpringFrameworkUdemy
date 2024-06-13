@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
@@ -31,9 +34,15 @@ public class User {
     private String username;
 
     @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // -> no se accede al JSON cuando se hace un get
     private String password;
 
     private boolean enabled;
+
+    @PrePersist
+    public void PrePersist(){
+        enabled = true;
+    }
 
     @ManyToAny
     @JoinTable(
@@ -45,6 +54,7 @@ public class User {
     private List<Role> roles;
 
     @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // -> no se accede al JSON cuando se hace un get
     private boolean admin;
 
     public Long getId() {
