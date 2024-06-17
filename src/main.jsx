@@ -5,6 +5,6 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ProductApp />
+    <ProductApp title={'Lista de Productos'}/>
   </React.StrictMode>,
 )
