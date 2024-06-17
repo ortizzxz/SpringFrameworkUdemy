@@ -1,6 +1,7 @@
 import { ProductDetail } from "./ProductDetail"
+import { PropTypes } from "prop-types";
 
-export const ProductGrid = ({products = []}) =>{
+export const ProductGrid = ({products = {} }) =>{
 
     return (
         <>
@@ -19,4 +20,8 @@ export const ProductGrid = ({products = []}) =>{
             </table>  
         </>
     )
+}
+
+ProductGrid.propTypes = {
+    product: PropTypes.array.isRequired
 }
