@@ -21,7 +21,7 @@ export const ProductForm = () => {
                 return;
             }
 
-            console.log(form);
+            console.log(form);  
             setForm(initialDataForm);
         }}>
             <input placeholder="Nombre" 

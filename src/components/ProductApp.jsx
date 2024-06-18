@@ -14,6 +14,13 @@ export const ProductApp = ({title}) => {
         setProducts(result);
     }, []);
 
+    const handlerAddProduct = (product) => {
+        console.log(product);
+
+        setProducts([...products, product, {...product}]);
+        
+    };
+
     return (
         <>
             <div>
