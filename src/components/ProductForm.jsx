@@ -21,9 +21,9 @@ export const ProductForm = ({ handlerAdd }) => {
                 return;
             }
 
-            console.log(form);  
+            // console.log(form);  
             handlerAdd({form});
-            
+
             setForm(initialDataForm);
         }}>
             <input placeholder="Nombre" 

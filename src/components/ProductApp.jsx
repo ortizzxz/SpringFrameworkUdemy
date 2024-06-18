@@ -17,20 +17,27 @@ export const ProductApp = ({title}) => {
     const handlerAddProduct = (product) => {
         console.log(product);
 
-        setProducts([...products, product, {...product}]);
+        setProducts([...products, {...product}]);
 
     };
+
+    const handlerRemoveProduct = (name) => {
+        console.log(name);
+        setProducts(products.filter(p => p.name != name ));
+    }
 
     return (
         <>
             <div>
-                    <h1>{ title  }</h1>
-                
+                <h1>{ title  }</h1>
                 <div>
-                    <ProductForm  handlerAdd = { handlerAddProduct }/>
-                </div>
-                <div>
-                    <ProductGrid products={ products } />
+                    <div>
+                        <ProductForm  handlerAdd = { handlerAddProduct }/>
+                    </div>
+
+                    <div>
+                        <ProductGrid products={ products } handlerRemove={ handlerRemoveProduct }/>
+                    </div>
                 </div>
             </div>
         </>
