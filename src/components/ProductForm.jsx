@@ -1,49 +1,75 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const initialDataForm = {
-    nombre: '',
-    indice: ''
+    id: 0,
+    name: '',
+    description: '',
+    price: ''
 }
-
-export const ProductForm = ({ handlerAdd }) => {
+// eslint-disable-next-line react/prop-types
+export const ProductForm = ({ productSelected, handlerAdd }) => {
 
     const [form, setForm] = useState(initialDataForm);
 
-    //desestructurando
-    const { nombre, indice} = form; 
+    const {id, name, description, price } = form;
 
-    return(
+    useEffect(() => {
+        setForm(productSelected);
+    }, [productSelected]);
+
+    return (
         <form onSubmit={(event) => {
             event.preventDefault();
 
-            if(!nombre || !indice){
-                alert('Debe rellenar el form')
+            if (!name || !description || !price) {
+                alert('Debe de completar los datos del formulario!')
                 return;
             }
-
-            // console.log(form);  
-            handlerAdd({form});
-
+            // console.log(form);
+            handlerAdd(form);
             setForm(initialDataForm);
         }}>
-            <input placeholder="Nombre" 
-            name="nombre"
-            value={nombre}
-            onChange={(event) => setForm({
-                ...form, nombre: event.target.value
-            })}
-            />
-            
-            <input placeholder="Indice" 
-            name="indice"
-            value={indice}
-            onChange={(event) => setForm({
-                ...form, indice: event.target.value
-            })}
-            />
-            <button type="submit">
-                Crear
-            </button>
+            <div>
+                <input
+                    placeholder="Name"
+                    className="form-control my-3 w-75"
+                    name="name"
+                    value={name}
+                    onChange={(event) => setForm({
+                        ...form,
+                        name: event.target.value
+                    })}
+                />
+            </div>
+            <div>
+                <input
+                    placeholder="Description"
+                    className="form-control my-3 w-75"
+                    name="description"
+                    value={description}
+                    onChange={(event) => setForm({
+                        ...form,
+                        description: event.target.value
+                    })}
+                />
+            </div>
+            <div>
+                <input
+                    placeholder="Price"
+                    className="form-control my-3 w-75"
+                    name="price"
+                    value={price}
+                    onChange={(event) => setForm({
+                        ...form,
+                        price: event.target.value
+                    })}
+                />
+            </div>
+            <div>
+                <button type="submit" className="btn btn-primary">
+                    {id> 0 ? 'Update': 'Create'}
+                </button>
+            </div>
         </form>
     )
 }
