@@ -1,11 +1,11 @@
 import { useState } from "react"
 
-export const ProductForm = () => {
+const initialDataForm = {
+    nombre: '',
+    indice: ''
+}
 
-    const initialDataForm = {
-        nombre: '',
-        indice: ''
-    }
+export const ProductForm = ({ handlerAdd }) => {
 
     const [form, setForm] = useState(initialDataForm);
 
@@ -22,6 +22,8 @@ export const ProductForm = () => {
             }
 
             console.log(form);  
+            handlerAdd({form});
+            
             setForm(initialDataForm);
         }}>
             <input placeholder="Nombre" 

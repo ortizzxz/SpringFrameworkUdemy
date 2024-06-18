@@ -18,18 +18,19 @@ export const ProductApp = ({title}) => {
         console.log(product);
 
         setProducts([...products, product, {...product}]);
-        
+
     };
 
     return (
         <>
             <div>
-                <div>
                     <h1>{ title  }</h1>
-                </div>
                 
                 <div>
-                    <ProductForm />
+                    <ProductForm  handlerAdd = { handlerAddProduct }/>
+                </div>
+                <div>
+                    <ProductGrid products={ products } />
                 </div>
             </div>
         </>
