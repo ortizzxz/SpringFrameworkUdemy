@@ -14,27 +14,36 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
 
-    private String nombre;
-    private String indice;
-
+    private String name;
+    private String description;
+    private Long price;
+    
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getIndice() {
-        return indice;
+    public String getDescription() {
+        return description;
     }
-    public void setIndice(String indice) {
-        this.indice = indice;
+    public void setDescription(String description) {
+        this.description = description;
     }
+    public Long getPrice() {
+        return price;
+    }
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    
 
     
 }
