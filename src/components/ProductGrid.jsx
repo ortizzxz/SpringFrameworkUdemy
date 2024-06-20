@@ -17,7 +17,8 @@ export const ProductGrid = ({ handlerProductSelected, handlerRemove, products = 
             </thead>
             <tbody>
                 {products.map(product => {
-                    return <ProductDetail handlerProductSelected={handlerProductSelected} handlerRemove={handlerRemove} product={product} key={product.name} />
+                    return <ProductDetail handlerProductSelected={handlerProductSelected} 
+                    handlerRemove={handlerRemove} product={product} key={product.name} />
                 })}
             </tbody>
         </table>

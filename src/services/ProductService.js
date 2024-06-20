@@ -1,3 +1,6 @@
+import axios from "axios";
+
+const baseUrl = 'http://localhost:9888/products';
 
 const initProducts = [
     {
@@ -17,3 +20,16 @@ const initProducts = [
 export const listProduct = () => {
     return initProducts; 
 }
+
+export const findAll = async () => {
+    
+    try{
+        const response = await axios.get(baseUrl);
+        return response;
+    }catch(error){
+        console.log(error);
+    }
+
+    return null;
+};
+
